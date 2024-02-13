@@ -1,0 +1,76 @@
+PharmacyManagementApp/
+|-- app/
+|   |-- __init__.py
+|   |-- controllers/
+|   |   |-- __init__.py
+|   |   |-- authentication_controller.py
+|   |   |-- product_controller.py
+|   |   |-- inventory_controller.py
+|   |   |-- sales_controller.py
+|   |   |-- prescription_controller.py
+|   |   |-- customer_controller.py
+|   |   |-- report_controller.py
+|   |-- models/
+|   |   |-- __init__.py
+|   |   |-- user_model.py
+|   |   |-- product_model.py
+|   |   |-- inventory_model.py
+|   |   |-- sales_model.py
+|   |   |-- prescription_model.py
+|   |   |-- customer_model.py
+|   |   |-- report_model.py
+|   |-- views/
+|   |   |-- __init__.py
+|   |   |-- authentication_view.py
+|   |   |-- product_view.py
+|   |   |-- inventory_view.py
+|   |   |-- sales_view.py
+|   |   |-- prescription_view.py
+|   |   |-- customer_view.py
+|   |   |-- report_view.py
+|-- config/
+|   |-- __init__.py
+|   |-- settings.py
+|-- resources/
+|   |-- images/
+|   |   |-- medication_icons/
+|   |   |-- logo.png
+|-- tests/
+|   |-- __init__.py
+|   |-- test_authentication.py
+|   |-- test_product_management.py
+|   |-- test_inventory_management.py
+|   |-- test_sales_management.py
+|   |-- test_prescription_management.py
+|   |-- test_customer_management.py
+|   |-- test_report_generation.py
+|-- main.py
+|-- README.md
+|-- requirements.txt
+|-- .gitignore
+
+
+Explanation:
+
+app/: Contains the main application logic.
+
+controllers/: Handles the application logic and communicates between models and views.
+models/: Represents the data and business logic of the application.
+views/: Responsible for the user interface and presentation.
+config/: Configuration files and settings for the application.
+
+settings.py: Centralized location for application settings.
+resources/: External resources used by the application.
+
+images/: Stores images used in the application.
+tests/: Unit tests for each module or functionality.
+
+main.py: Entry point for the application.
+
+README.md: Documentation for the project.
+
+requirements.txt: Lists the dependencies required for the project.
+
+.gitignore: Specifies files and directories to be ignored by version control.
+
+This structure separates concerns, making it easier to manage, test, and expand the application. As you develop, you might find it beneficial to further organize code into subdirectories or modularize based on functionality. Adjustments can be made based on the specific libraries and frameworks you choose to use.
