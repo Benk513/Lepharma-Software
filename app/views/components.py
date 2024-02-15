@@ -1,3 +1,4 @@
+from typing import Tuple
 import customtkinter as ctk
 from components import *
 from ui_settings import *
@@ -48,6 +49,59 @@ class EntryField(ctk.CTkEntry):
             font=(FONT,size),
            )
         self.grid(column=col,columnspan=span,row=row,sticky=sticky)
+
+
+class OptionMenu(ctk.CTkOptionMenu):
+    def __init__(self,
+                 parent,
+                 width,
+                 height,   
+                 button_hover_color ,
+                 values, col, span,row,sticky
+                 ):
+        super().__init__(master=parent,
+                         width=width,
+                         height=height,
+                         corner_radius=5,
+                         bg_color="transparent", 
+                         fg_color='#fff', 
+                         button_color='#fff',
+                         button_hover_color=button_hover_color, 
+                         text_color='#00A0FF', 
+                         dropdown_fg_color='#fff',
+                         dropdown_hover_color='#eee',
+                         dropdown_text_color='#303030',
+                         font=(FONT,15), 
+                         dropdown_font=(FONT,13), 
+                         values=values,
+                         dynamic_resizing=True
+                        )
+        self.grid(column=col,columnspan=span,row=row,sticky=sticky)
+        
+        
+        
+        
+        
+class Frame(ctk.CTkFrame):
+    def __init__(self,
+                 parent, 
+                 width, 
+                 height,col,span,row,sticky,
+                 fg_color="#FFF"):
+        super().__init__(master=parent,
+                         width=width, 
+                         height=height,
+                         corner_radius=15,
+                         border_width=0,                           
+                         fg_color=fg_color, 
+                         border_color=None,
+                         )
+        
+        self.grid(column=col,columnspan=span,row=row,sticky=sticky)
+                
+        
+        
+
 
 
 
