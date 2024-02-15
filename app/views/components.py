@@ -1,13 +1,9 @@
-import tkinter
-import tkinter.messagebox
-import customtkinter
+import customtkinter as ctk
+from components import *
 from ui_settings import *
+from PIL import Image
 
-customtkinter.set_appearance_mode("System")  # Modes: "System" (standard), "Dark", "Light"
-customtkinter.set_default_color_theme("green")  # Themes: "blue" (standard), "green", "dark-blue"
-
-
-class Button(customtkinter.CTkButton):
+class Button(ctk.CTkButton):
     def __init__(self,parent, func,text,col,row,span=1,color='blue-sky'):
         super().__init__(
             master=parent,
@@ -23,7 +19,24 @@ class Button(customtkinter.CTkButton):
         )
         self.grid(column=col,columnspan=span,row=row,sticky='nsew')
         
-        
+
+
+class Text(ctk.CTkLabel):
+    def __init__(self,parent, text, col,span,row,size,weight,sticky,color='text-color'):
+        super().__init__(
+            master=parent,
+            font=(FONT,size,weight),
+            text=text,             
+            text_color=COLORS[color]['text'],           
+        )
+        self.grid(column=col,columnspan=span,row=row,sticky=sticky)
+
+
+
+
+
+
+
 # class App(customtkinter.CTk):
 #     def __init__(self):
 #         super().__init__()

@@ -12,10 +12,12 @@ FONT='Montserrat'
 OUTPUT_FONT_SIZE=70
 LOGIN_TITLE_FONT_SIZE=25
 BUTTON_FONT_SIZE=12
+NORMAL_SIZE=12
+
 
 STYLING = {
     'gap':0.5,
-    'button-corner-radius':12
+    'button-corner-radius':15
 }
 
 NUM_POSITIONS={
@@ -41,6 +43,8 @@ OPERATORS = {
 
 COLORS ={
     'blue-sky':{'fg':'#00A0FF','hover':'#197EBA','text':'white',},
+    
+    'text-color':{'text':'#4B5563'},
     
     'dark-gray':{'fg':('#D4D4D2','#505050'),'hover':('#efefed','#686868'),'text':('black','white')},
     
