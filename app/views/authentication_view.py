@@ -1,4 +1,6 @@
 # app/views/authentication_view.py
+from tkinter.constants import NORMAL
+from typing import Tuple
 import customtkinter as ctk
 from components import *
 from ui_settings import *
@@ -7,6 +9,36 @@ from PIL import Image
 # cwd = os.getcwd()  # Get the current working directory (cwd)
 # files = os.listdir(cwd)  # Get all the files in that directory
 # print("Files in %r: %s" % (cwd, files))
+
+
+class OptionMenu(ctk.CTkOptionMenu):
+    def __init__(self,
+                 parent,
+                 width,
+                 height,   
+                 button_hover_color ,
+                 values, col, span,row,sticky
+                 ):
+        super().__init__(master=parent,
+                         width=width,
+                         height=height,
+                         corner_radius=5,
+                         bg_color="transparent", 
+                         fg_color='#fff', 
+                         button_color='#fff',
+                         button_hover_color=button_hover_color, 
+                         text_color='#00A0FF', 
+                         dropdown_fg_color='#fff',
+                         dropdown_hover_color='#eee',
+                         dropdown_text_color='#303030',
+                         font=(FONT,15), 
+                         dropdown_font=(FONT,13), 
+                         values=values,
+                         dynamic_resizing=True
+                        )
+        self.grid(column=col,columnspan=span,row=row,sticky=sticky)
+        
+
 
 class AuthenticationView(ctk.CTk):
     def __init__(self):
@@ -56,17 +88,27 @@ class AuthenticationView(ctk.CTk):
         
         self.frameForm.columnconfigure(0,weight=1)
         self.frameForm.rowconfigure(0,weight=3)
-        self.frameForm.rowconfigure((1,2,3,4,5,6,7,8),weight=1)
+        self.frameForm.rowconfigure((1,2,3,4,5,6,7,8,9,10),weight=1)
                
         
+        #connexion title
         self.logTitle = Text(self.frameForm,text="Connexion",col=0,span=1,row=0,size=LOGIN_TITLE_FONT_SIZE,weight='normal',sticky='s',color='text-color')
         
-        self.usernameLabel = Text(self.frameForm,text="Nom d'utilisateur",col=0,span=1,row=1,size=13,weight='normal',sticky='ws',color='text-color')
-        self.usernameEntry=EntryField(self.frameForm,150,'Inserez votre nom d\'utilisateur ',12,0,1,2,'new')
+        #option role
+        self.optionLabel = Text(self.frameForm,text="Selectionnez le role",col=0,span=1,row=1,size=13,weight='normal',sticky='se',color='text-color')
+        self.optionMenu2 = OptionMenu(self.frameForm,70,30,'#ECEDF2',values=["Pharmacien", "Vendeur(se)"],col=0,span=1,row=2,sticky='ne')
+        
+               
+        
+        
+        
+        
+        self.usernameLabel = Text(self.frameForm,text="Nom d'utilisateur",col=0,span=1,row=3,size=13,weight='normal',sticky='ws',color='text-color')
+        self.usernameEntry=EntryField(self.frameForm,150,'Inserez votre nom d\'utilisateur ',12,0,1,4,'new')
               
         
-        self.passwordLabel = Text(self.frameForm,text="Mot de Passe",col=0,span=1,row=4,size=13,weight='normal',sticky='ws',color='text-color')
-        self.passwordEntry=EntryField(self.frameForm,150,'Inserez votre mot de passe ',12,0,1,5,'new')
+        self.passwordLabel = Text(self.frameForm,text="Mot de Passe",col=0,span=1,row=5,size=13,weight='normal',sticky='ws',color='text-color')
+        self.passwordEntry=EntryField(self.frameForm,150,'Inserez votre mot de passe ',12,0,1,6,'new')
        
         #button for login
         self.loginButton = ctk.CTkButton(
@@ -80,7 +122,7 @@ class AuthenticationView(ctk.CTk):
             text_color=COLORS['blue-sky']['text'],
             font=(FONT,BUTTON_FONT_SIZE,'bold','roman' ),
         )
-        self.loginButton.grid(column=0 ,row=6,ipadx=10 ,ipady=5 , sticky='ew')
+        self.loginButton.grid(column=0 ,row=8,ipadx=10 ,ipady=5 , sticky='ew')
         
         
     def greet(self):
