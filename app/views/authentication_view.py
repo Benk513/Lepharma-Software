@@ -11,12 +11,28 @@ from PIL import Image
 # files = os.listdir(cwd)  # Get all the files in that directory
 # print("Files in %r: %s" % (cwd, files))
 
+#screen attributes
+
+
 class AuthenticationView(ctk.CTk):
     def __init__(self):
         super().__init__(fg_color='#eee')
         
-        self.geometry('600x400')
-        self.resizable(width=False, height=False)  
+        self.geometry('600x400+500+300')
+        self.resizable(width=False, height=False) 
+        self.attributes('-topmost',True)
+        
+        #mask off the title bar
+        self.overrideredirect(1)
+        
+        print(self.winfo_screenwidth(),self.winfo_screenheight())
+        
+        
+        #security event
+        self.bind('<Escape>', lambda event:self.quit())
+      
+      
+      
         
         self.title('Login To Lepharma')
         ctk.set_appearance_mode('light')
@@ -82,15 +98,6 @@ class AuthenticationView(ctk.CTk):
             font=(FONT,BUTTON_FONT_SIZE,'bold' ),
         )
         self.loginButton.grid(column=0 ,row=8,ipadx=40 ,ipady=5)
-        
-        
-        
-        
-        
-        
-        
-        
-        
         
         
         
