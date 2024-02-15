@@ -3,30 +3,10 @@ import customtkinter as ctk
 from components import *
 from ui_settings import *
 from PIL import Image
-
 # import os
-
 # cwd = os.getcwd()  # Get the current working directory (cwd)
 # files = os.listdir(cwd)  # Get all the files in that directory
 # print("Files in %r: %s" % (cwd, files))
-
-class EntryField(ctk.CTkEntry):
-    def __init__(self, parent, width,placeholder_text,size,col,span,row,sticky):
-        super().__init__(
-            master=parent,
-            width=width,
-            height=30,
-            corner_radius=STYLING['button-corner-radius'],
-            border_width=0,  
-            fg_color='#ECEDF2',            
-            text_color='#4B5563',
-            placeholder_text_color = '#7B7B7B', 
-            placeholder_text=placeholder_text,
-            font=(FONT,size),
-           )
-        self.grid(column=col,columnspan=span,row=row,sticky=sticky)
-      
-            
 
 class AuthenticationView(ctk.CTk):
     def __init__(self):

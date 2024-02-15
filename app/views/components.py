@@ -33,7 +33,21 @@ class Text(ctk.CTkLabel):
 
 
 
-
+class EntryField(ctk.CTkEntry):
+    def __init__(self, parent, width,placeholder_text,size,col,span,row,sticky):
+        super().__init__(
+            master=parent,
+            width=width,
+            height=30,
+            corner_radius=STYLING['button-corner-radius'],
+            border_width=0,  
+            fg_color='#ECEDF2',            
+            text_color='#4B5563',
+            placeholder_text_color = '#7B7B7B', 
+            placeholder_text=placeholder_text,
+            font=(FONT,size),
+           )
+        self.grid(column=col,columnspan=span,row=row,sticky=sticky)
 
 
 
