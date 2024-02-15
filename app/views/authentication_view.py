@@ -16,25 +16,30 @@ class AuthenticationView(ctk.CTk):
         super().__init__(fg_color='#eee')
         
         self.geometry('600x400')
-        self.resizable(width=False, height=False)
+        self.resizable(width=False, height=False)  
         
         self.title('Login To Lepharma')
         ctk.set_appearance_mode('light')
         
-        self.loginImage = ctk.CTkImage(light_image=Image.open('D:\\Work\\Projet GEKATON\\Projet LEPHARMA\\codage\\Lepharma Software\\app\\images\\login.png'))
+        self.loginImage = ctk.CTkImage(light_image=Image.open('D:\\Work\\Projet GEKATON\\Projet LEPHARMA\\codage\\Lepharma Software\\app\\images\\login.png') ,size=(273,400))
         
         
-        self.logiImgB = ctk.CTkButton(
-            self.frameImage,          
-            text='',
-            width=50,
-            height=20,
-            image=self.loginImage),
-        
-        self.logiImgB.pack(fill='both' ,expand=True)
 
         self.frameImage = ctk.CTkFrame(self,width=273,height=400)
         self.frameImage.place(x=0,y=0)
+        
+       
+        
+        self.logiImgB = ctk.CTkLabel(
+            self.frameImage,          
+            text='',
+            width=273,
+            height=400,
+            image=self.loginImage )
+        
+        self.logiImgB.pack(fill='both' ,expand=True)
+        
+        
         
         self.frameForm = ctk.CTkFrame(self,  fg_color='#fff',width=327, height=400)
         self.frameForm.place(x=273,y=0 )
@@ -55,7 +60,7 @@ class AuthenticationView(ctk.CTk):
         
         self.usernameEntry = customtkinter.CTkEntry(
             self.frameForm,
-            placeholder_text="Nom d'Utilisateur",
+            placeholder_text="Inserez votre nom d'utilisateur",
             corner_radius=STYLING['button-corner-radius'],width=268,height=30,
             fg_color='#F5F6FA').grid(column=0 ,row=4)
         
