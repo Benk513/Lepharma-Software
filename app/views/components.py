@@ -22,14 +22,14 @@ class Button(ctk.CTkButton):
 
 
 class Text(ctk.CTkLabel):
-    def __init__(self,parent, text, col,span,row,size,weight,sticky,color='text'):
+    def __init__(self,parent, text, col,span,row,size,weight,sticky,color='text',padx=0,pady=0):
         super().__init__(
             master=parent,
             font=(FONT,size,weight),
             text=text,             
             text_color=COLORS['text-color'][color],           
         )
-        self.grid(column=col,columnspan=span,row=row,sticky=sticky)
+        self.grid(column=col,columnspan=span,row=row,sticky=sticky,padx=padx,pady=pady)
 
 
 
@@ -74,7 +74,7 @@ class OptionMenuHeader(ctk.CTkOptionMenu):
     
     
 class Frame(ctk.CTkFrame):
-    def __init__(self,parent, width,height,col,span,row,sticky,fg_color="#FFF"):
+    def __init__(self,parent, width,height,col,span,row,sticky,fg_color="#FFF",padx=0,pady=0):
         super().__init__(master=parent,
                          width=width, 
                          height=height,
@@ -84,7 +84,7 @@ class Frame(ctk.CTkFrame):
                          border_color=None,
                          )
         
-        self.grid(column=col,columnspan=span,row=row,sticky=sticky)
+        self.grid(column=col,columnspan=span,row=row,sticky=sticky,padx=padx,pady=pady)
 
 
 class HeaderFrame(ctk.CTkFrame):

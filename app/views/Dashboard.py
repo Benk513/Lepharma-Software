@@ -86,17 +86,21 @@ class Dashboard(ctk.CTk):
         self.frame.rowconfigure(0,weight=1)
         
         #main title helps to know where we are     
-        self.title = Text(self.frame,text="Clients  > Liste Des Clients",col=0,row=0,size=TITLE_FONT_SIZE,weight='bold',span=1,sticky='ew',color='title')
+        self.title = Text(self.frame,text="Clients  > Liste Des Clients",col=0,row=0,size=TITLE_FONT_SIZE,weight='bold',span=1,sticky='w',color='title')
         
       
         self.addClient=Button(self.frame,text='Ajouter un client',color='blue-sky',col=4,row=0,span=1,func=lambda :print("hello"),sticky='es')
         
     
     def create_main_frame(self,display_width):
-        self.headFrame = HeaderFrame(self,width=display_width,height=10,col=0,span=2,row=2,fg_color=COLORS['blue-sky']['fg'],sticky='ew')
+        self.headFrame = HeaderFrame(self,width=display_width,height=10,col=0,span=2,row=2,fg_color=COLORS['light']['fg'],sticky='ew')
         
-        self.frame = Frame(self.headFrame,width=370,height=500,col=0,span=1,row=1,sticky='w')
-        self.frame = Frame(self.headFrame,width=1000,height=590,col=1,span=1,row=1,sticky='es')
+        #filter frame
+        self.frame = Frame(self.headFrame,width=350,height=590,col=0,span=1,row=1,sticky='w',padx=(50,0))
+        
+        
+        #list frame
+        self.frame = Frame(self.headFrame,width=1000,height=590,col=1,span=1,row=1,sticky='es',padx=(40,0))
      
     def create_footer_bar(self,display_width):
         self.headFrame = HeaderFrame(self,width=display_width,height=50,col=0,span=2,row=3,fg_color=COLORS['orange']['fg'],sticky='sew')
