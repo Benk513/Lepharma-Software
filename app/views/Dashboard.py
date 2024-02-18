@@ -79,14 +79,19 @@ class Dashboard(ctk.CTk):
         OptionMenuHeader(self.headFrame,40,30,COLORS['primary']['hover'],values=["","Utilisateurs","Notification","Parametre","Deconnexion"],col=11,span=1,row=0,sticky='w')
         
     def create_title_bar(self,display_width):
-        self.frame = HeaderFrame(self,width=display_width,height=70,col=0,span=2,row=1,fg_color=COLORS['orange']['fg'],sticky='nsew')
+        self.frame = HeaderFrame(self,width=display_width,height=70,col=0,span=2,row=1,sticky='nsew',fg_color=COLORS['light']['fg'])
         
+        #configure the column and rows
         self.frame.columnconfigure((0,1,2,3,4),weight=1)
         self.frame.rowconfigure(0,weight=1)
-     
+        
+        #main title helps to know where we are     
         self.title = Text(self.frame,text="Clients  > Liste Des Clients",col=0,row=0,size=TITLE_FONT_SIZE,weight='bold',span=1,sticky='ew',color='title')
         
+      
+        self.addClient=Button(self.frame,text='Ajouter un client',color='blue-sky',col=4,row=0,span=1,func=lambda :print("hello"),sticky='ws')
         
+    
     def create_main_frame(self,display_width):
         self.headFrame = HeaderFrame(self,width=display_width,height=10,col=0,span=2,row=2,fg_color=COLORS['blue-sky']['fg'],sticky='nsew')
         

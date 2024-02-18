@@ -5,21 +5,20 @@ from ui_settings import *
 from PIL import Image
 
 class Button(ctk.CTkButton):
-    def __init__(self,parent, func,text,col,row,span=1,color='blue-sky'):
+    def __init__(self,parent, func,text:str,col:int,row:int,sticky:str,padx:int=0,pady:int=0,span=1,color='blue-sky'):
         super().__init__(
             master=parent,
             command=func,
             text=text,
-            width=50,
-            height=20,
+            width=70,
+            height=40,
             corner_radius=STYLING['button-corner-radius'],
             fg_color=COLORS[color]['fg'],
             hover_color=COLORS[color]['hover'],
             text_color=COLORS[color]['text'],
             font=(FONT,BUTTON_FONT_SIZE) 
         )
-        self.grid(column=col,columnspan=span,row=row,sticky='nsew')
-        
+        self.grid(column=col,columnspan=span,row=row,sticky=sticky,padx=padx,pady=pady)
 
 
 class Text(ctk.CTkLabel):
@@ -99,8 +98,7 @@ class HeaderFrame(ctk.CTkFrame):
         
         self.grid(column=col,columnspan=span,row=row,sticky=sticky)
                 
-        
-        
+    
 class ImageLabel(ctk.CTkLabel):
     def __init__(self, parent , width:int, height:int, corner_radius:int ,text, image:str, col:int,row:int,sticky:str ,span :int=1, compound: str = "center"):
         super().__init__(master=parent, width=width, height=height, text=text,corner_radius=corner_radius,image=image, compound=compound)

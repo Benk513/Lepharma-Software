@@ -48,16 +48,20 @@ IMAGE_LINKS={
 }
 
 COLORS ={
+    #accent color
     'blue-sky':{'fg':'#00A0FF','hover':'#197EBA','text':'white',},
     
+    #for buttons
+    'gray':{'fg':'#F1F1F1','hover':'#D9D9D9','text':'black',},
+    #dark color
     'primary':{'fg':'#142D63','text':'#4B5563','hover':'#3057AB'},
    
     'orange':{'fg':'#FF9500','hover':'#ffb143','text':('black','white')},
  
     'text-color':{'fg':'#FF9500','title':'#142D63','text':'#4B5563'},
     
-    
-    'oter':{'fg':'white','hover':'white','text':('black','#FF9500')},    
+    'light':{'fg':'#F1F4F8','title':'#142D63','text':'#4B5563'},
+       
 }
 
 TITLE_BAR_HEX_COLORS = {

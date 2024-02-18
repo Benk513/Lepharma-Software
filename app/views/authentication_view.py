@@ -75,18 +75,18 @@ class AuthenticationView(ctk.CTk):
         self.closeIconLabel.place(x=250,y=0)      
         
         #connexion title
-        self.logTitle = Text(self.frameForm,text="Connexion",col=0,span=1,row=0,size=LOGIN_TITLE_FONT_SIZE,weight='normal',sticky='s',color='text-color')
+        self.logTitle = Text(self.frameForm,text="Connexion",col=0,span=1,row=0,size=LOGIN_TITLE_FONT_SIZE,weight='normal',sticky='s',color='text')
         
         #option role
-        self.optionLabel = Text(self.frameForm,text="Selectionnez le role",col=0,span=1,row=1,size=13,weight='normal',sticky='se',color='text-color')
+        self.optionLabel = Text(self.frameForm,text="Selectionnez le role",col=0,span=1,row=1,size=13,weight='normal',sticky='se',color='text')
         self.optionMenu2 = OptionMenu(self.frameForm,70,30,'#ECEDF2',values=["Pharmacien", "Vendeur(se)"],col=0,span=1,row=2,sticky='ne')
         
         #username label and entry
-        self.usernameLabel = Text(self.frameForm,text="Nom d'utilisateur",col=0,span=1,row=3,size=13,weight='normal',sticky='ws',color='text-color')
+        self.usernameLabel = Text(self.frameForm,text="Nom d'utilisateur",col=0,span=1,row=3,size=13,weight='normal',sticky='ws',color='text')
         self.usernameEntry=EntryField(self.frameForm,150,'Inserez votre nom d\'utilisateur ',12,0,1,4,'new')
               
         #username label and entry
-        self.passwordLabel = Text(self.frameForm,text="Mot de Passe",col=0,span=1,row=5,size=13,weight='normal',sticky='ws',color='text-color')
+        self.passwordLabel = Text(self.frameForm,text="Mot de Passe",col=0,span=1,row=5,size=13,weight='normal',sticky='ws',color='text')
         self.passwordEntry=EntryField(self.frameForm,150,'Inserez votre mot de passe ',12,0,1,6,'new')
        
         #button for login
