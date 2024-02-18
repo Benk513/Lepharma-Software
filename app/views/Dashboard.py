@@ -15,35 +15,86 @@ class Dashboard(ctk.CTk):
     def __init__(self):
         super().__init__(fg_color='#F1F4F8')
         
+        #self.resizable(width=False, height=False) 
         
-        self.resizable(width=False, height=False) 
-        self.attributes('-topmost',True)
+        self.state("zoomed")
         
         display_width= self.winfo_screenwidth()
         display_height =self.winfo_screenheight()
         
-        window_width = 600
-        window_height = 400
+        minimalWidth=int(self.winfo_screenwidth()*0.95)
+        minimalHeight=int(self.winfo_screenheight()*0.95)
         
-        left = int(display_width / 2 - window_width/2)
-        top = int(display_height / 2 - window_height/2)
+        self.minsize(minimalWidth,minimalHeight)
+        self.geometry(f'{minimalWidth}x{minimalHeight}+0+0')
         
-        self.geometry(f'{display_width}x{display_height}+0+0')
-        
-        #mask off the title bar
-        self.overrideredirect(0)        
+         
+              
         #security event
         self.bind('<Escape>', lambda event:self.quit())
     
         ctk.set_appearance_mode('light')
         
         self.columnconfigure((0,1),weight=1)
-        self.rowconfigure((0,1,2),weight=1)
-        
-        self.frame = Frame(self,width=400,height=700,col=0,span=1,row=1,sticky='w')
-        self.frame = Frame(self,width=400,height=700,col=1,span=1,row=1,sticky='w')
-        
      
-
+        self.rowconfigure((0,1,3),weight=1)
+        self.rowconfigure(2,weight=6)
+        
+        self.create_widgets()
+    
+    
+    def create_widgets(self):
+        
+        display_width= self.winfo_screenwidth()
+        display_height =self.winfo_screenheight()
+        
+        
+        self.create_navbar(display_width,display_height)
+        self.create_title_bar(display_width)
+        self.create_main_frame(display_width)
+        self.create_footer_bar(display_width)
+        
+    def create_navbar(self,display_width,display_height):
+        #header div
+        self.headFrame = HeaderFrame(self,width=display_width,height=10,col=0,span=2,row=0,fg_color=COLORS['primary']['fg'],sticky='nsew')
+        
+        self.headFrame.columnconfigure(0,weight=8)
+        self.headFrame.columnconfigure((1,2,3,4,5,6,7,8,9,10,11),weight=1)
+        self.headFrame.rowconfigure(0,weight=1)    
+        #importing the close icon image 
+        self.logoImg = ctk.CTkImage(light_image=Image.open(IMAGE_LINKS['logoLepharma']) ,size=(200,50))
+        
+        self.logoFrame=ImageLabel(parent=self.headFrame,width=200,height=50,image=self.logoImg ,text='' ,corner_radius=0,span=1,col=0,row=0,sticky='ew')
+        
+        #Option Menu for the header               
+        OptionMenuHeader(self.headFrame,40,30,COLORS['primary']['hover'],values=["Tableau de Bord", "Vendeur(se)"],col=4,span=1,row=0,sticky='e')
+        OptionMenuHeader(self.headFrame,40,30,COLORS['primary']['hover'],values=["Ventes", "Vendeur(se)"],col=5,span=1,row=0,sticky='e')
+        OptionMenuHeader(self.headFrame,40,30,COLORS['primary']['hover'],values=["Produits", "Vendeur(se)"],col=6,span=1,row=0,sticky='e')
+        OptionMenuHeader(self.headFrame,40,30,COLORS['primary']['hover'],values=["Stocks", "Vendeur(se)"],col=7,span=1,row=0,sticky='e')
+        OptionMenuHeader(self.headFrame,40,30,COLORS['primary']['hover'],values=["Rapports", "Vendeur(se)"],col=8,span=1,row=0,sticky='e')
+        OptionMenuHeader(self.headFrame,40,30,COLORS['primary']['hover'],values=["Clients", "Vendeur(se)"],col=9,span=1,row=0,sticky='e')
+           
+        self.logoImg = ctk.CTkImage(light_image=Image.open(IMAGE_LINKS['userProfile']) ,size=(40,40))
+        self.logoFrame=ImageLabel(parent=self.headFrame,width=50,height=50,image=self.logoImg ,text='' ,corner_radius=0,col=10,row=0,sticky='e')
+        OptionMenuHeader(self.headFrame,40,30,COLORS['primary']['hover'],values=["","Utilisateurs","Notification","Parametre","Deconnexion"],col=11,span=1,row=0,sticky='w')
+        
+    def create_title_bar(self,display_width):
+        self.frame = HeaderFrame(self,width=display_width,height=70,col=0,span=2,row=1,fg_color=COLORS['orange']['fg'],sticky='nsew')
+        
+        self.frame.columnconfigure((0,1,2,3,4),weight=1)
+        self.frame.rowconfigure(0,weight=1)
+     
+        self.title = Text(self.frame,text="Clients  > Liste Des Clients",col=0,row=0,size=TITLE_FONT_SIZE,weight='bold',span=1,sticky='ew',color='title')
+        
+        
+    def create_main_frame(self,display_width):
+        self.headFrame = HeaderFrame(self,width=display_width,height=10,col=0,span=2,row=2,fg_color=COLORS['blue-sky']['fg'],sticky='nsew')
+        
+        self.frame = Frame(self.headFrame,width=400,height=400,col=0,span=1,row=1,sticky='w')
+        self.frame = Frame(self.headFrame,width=400,height=200,col=1,span=1,row=1,sticky='w')
+     
+    def create_footer_bar(self,display_width):
+        self.headFrame = HeaderFrame(self,width=display_width,height=50,col=0,span=2,row=3,fg_color=COLORS['orange']['fg'],sticky='sew')
+        
 if __name__ == "__main__":
     Dashboard().mainloop()

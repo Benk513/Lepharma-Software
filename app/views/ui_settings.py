@@ -8,9 +8,10 @@ MAIN_COLUMNS=4
 LOGIN_WINDOW_SIZE = (600,400)
 
 #text
-FONT='Montserrat'
+FONT='Poppins'
 OUTPUT_FONT_SIZE=70
 LOGIN_TITLE_FONT_SIZE=25
+TITLE_FONT_SIZE = 20
 BUTTON_FONT_SIZE=12
 NORMAL_SIZE=12
 
@@ -41,16 +42,22 @@ OPERATORS = {
     'percent' : {'col':2 , 'row':2, 'text':'%', 'image path':{'light':'images/inverts'}},
 }
 
+IMAGE_LINKS={
+    'logoLepharma':'D:\\Work\\Projet GEKATON\\Projet LEPHARMA\\codage\\Lepharma Software\\app\\images\\lepharmaLogo.png',
+    'userProfile':'D:\\Work\\Projet GEKATON\\Projet LEPHARMA\\codage\\Lepharma Software\\app\\images\\userProfil.png'
+}
+
 COLORS ={
     'blue-sky':{'fg':'#00A0FF','hover':'#197EBA','text':'white',},
     
-    'text-color':{'text':'#4B5563'},
-    
-    'dark-gray':{'fg':('#D4D4D2','#505050'),'hover':('#efefed','#686868'),'text':('black','white')},
-    
+    'primary':{'fg':'#142D63','text':'#4B5563','hover':'#3057AB'},
+   
     'orange':{'fg':'#FF9500','hover':'#ffb143','text':('black','white')},
  
-    'orange-highlight':{'fg':'white','hover':'white','text':('black','#FF9500')},    
+    'text-color':{'fg':'#FF9500','title':'#142D63','text':'#4B5563'},
+    
+    
+    'oter':{'fg':'white','hover':'white','text':('black','#FF9500')},    
 }
 
 TITLE_BAR_HEX_COLORS = {

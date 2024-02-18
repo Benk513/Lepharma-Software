@@ -1,1 +1,1 @@
-text="CustomTkinter", font=customtkinter.CTkFont(size=20, weight="bold")
+self.optionMenu2 = OptionMenu(self.frameForm,70,30,'#ECEDF2',values=["Pharmacien", "Vendeur(se)"],col=0,span=1,row=2,sticky='ne')
