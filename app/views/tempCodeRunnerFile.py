@@ -1,1 +1,1 @@
-self.optionMenu2 = OptionMenu(self.frameForm,70,30,'#ECEDF2',values=["Pharmacien", "Vendeur(se)"],col=0,span=1,row=2,sticky='ne')
+helps to know w
