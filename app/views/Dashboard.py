@@ -105,7 +105,7 @@ class Dashboard(ctk.CTk):
         self.filterFrame.rowconfigure((0,1,2,3,4,5,6),weight=1)      
         
         self.filterTitle = Text(self.filterFrame,"Filtrer Par",0,1,0,15,'bold','ew')
-        self.val = EntryFieldFrame(self.filterFrame,width=100,height=80,col=0,placeholder="Nom du client",span=1,row=1,sticky='ew')
+        self.val = EntryFieldFrame(self.filterFrame,width=200,height=40,col=0,placeholder="Nom du client",span=1,row=1,sticky='we',padx=20)
     
     
     

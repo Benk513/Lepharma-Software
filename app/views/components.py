@@ -52,6 +52,24 @@ class EntryField(ctk.CTkEntry):
 
 
 
+class IconButton(ctk.CTkButton):
+    def __init__(self,parent,image, func,text:str,col:int,row:int,sticky:str,padx:int=0,pady:int=0,span=1,color='blue-sky'):
+        super().__init__(
+            master=parent,
+            command=func,
+            text=text,
+            width=70,
+            height=40,
+            corner_radius=STYLING['button-corner-radius'],
+            fg_color=COLORS[color]['fg'],
+            hover_color=COLORS[color]['hover'],
+            text_color=COLORS[color]['text'],
+            font=(FONT,BUTTON_FONT_SIZE),
+            image=image
+        )
+        self.grid(column=col,columnspan=span,row=row,sticky=sticky,padx=padx,pady=pady)
+
+
 class EntryFieldFrame(ctk.CTkFrame):
     def __init__(self,parent, width,height,col,placeholder,span,row,sticky,fg_color="#FFF",padx=0,pady=0):
         super().__init__(master=parent,
@@ -64,8 +82,14 @@ class EntryFieldFrame(ctk.CTkFrame):
                          )
         self.rowconfigure(0,weight=1)
         self.columnconfigure((0,1),weight=1)
-        self.entry = EntryField(parent=self,width=150,placeholder_text=placeholder,size=15,col=0,span=1,row=0,sticky='ew',)
         
+        #entry field
+        self.entry = EntryField(parent=self,width=150,placeholder_text=placeholder,size=15,col=0,span=1,row=0,sticky='ew',fg_color='#fff',border_width=2,border_color="#B6BDCA",corner_radius=12,height=40)
+        
+        #button with icon here
+        
+        
+         
         self.grid(column=col,columnspan=span,row=row,sticky=sticky,padx=padx,pady=pady)
         
 
