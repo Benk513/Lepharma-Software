@@ -86,7 +86,7 @@ class Dashboard(ctk.CTk):
         self.frame.rowconfigure(0,weight=1)
         
         #main title helps to know where we are     
-        self.title = Text(self.frame,text="Clients  > Liste Des Clients",col=0,row=0,size=TITLE_FONT_SIZE,weight='bold',span=1,sticky='w',color='title')
+        self.title = Text(self.frame,text="Clients  > Liste Des Clients",col=0,row=0,size=TITLE_FONT_SIZE,weight='bold',span=1,sticky='ws',color='title',padx=(50,0))
         
       
         self.addClient=Button(self.frame,text='Ajouter un client',color='blue-sky',col=4,row=0,span=1,func=lambda :print("hello"),sticky='es')
@@ -94,11 +94,25 @@ class Dashboard(ctk.CTk):
     
     def create_main_frame(self,display_width):
         self.headFrame = HeaderFrame(self,width=display_width,height=10,col=0,span=2,row=2,fg_color=COLORS['light']['fg'],sticky='ew')
+        self.create_filter_frame()
+        #self.create_list_frame()
         
+    def create_filter_frame(self):
         #filter frame
-        self.frame = Frame(self.headFrame,width=350,height=590,col=0,span=1,row=1,sticky='w',padx=(50,0))
+        self.filterFrame = Frame(self.headFrame,width=350,height=590,col=0,span=1,row=1,sticky='w',padx=(50,0))
+        self.filterFrame.grid_propagate(False)
+        self.filterFrame.columnconfigure(0,weight=1)
+        self.filterFrame.rowconfigure((0,1,2,3,4,5,6),weight=1)      
         
+        self.filterTitle = Text(self.filterFrame,"Filtrer Par",0,1,0,15,'bold','ew')
+        self.val = EntryFieldFrame(self.filterFrame,width=100,height=80,col=0,placeholder="Nom du client",span=1,row=1,sticky='ew')
+    
+    
+    
+    
+    
         
+    def create_list_frame(self):   
         #list frame
         self.frame = Frame(self.headFrame,width=1000,height=590,col=1,span=1,row=1,sticky='es',padx=(40,0))
      

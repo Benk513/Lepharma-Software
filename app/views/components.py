@@ -34,20 +34,56 @@ class Text(ctk.CTkLabel):
 
 
 class EntryField(ctk.CTkEntry):
-    def __init__(self, parent, width,placeholder_text,size,col,span,row,sticky):
+    def __init__(self, parent, width,placeholder_text,size,col,span,row,sticky,fg_color='#ECEDF2',border_width=0,corner_radius=STYLING['button-corner-radius'],height=30,border_color='#fff'):
         super().__init__(
             master=parent,
             width=width,
-            height=30,
-            corner_radius=STYLING['button-corner-radius'],
-            border_width=0,  
-            fg_color='#ECEDF2',            
+            height=height,
+            corner_radius=corner_radius,
+            border_width=border_width,  
+            fg_color=fg_color,            
             text_color='#4B5563',
             placeholder_text_color = '#7B7B7B', 
             placeholder_text=placeholder_text,
             font=(FONT,size),
+            border_color=border_color
            )
         self.grid(column=col,columnspan=span,row=row,sticky=sticky)
+
+
+
+class EntryFieldFrame(ctk.CTkFrame):
+    def __init__(self,parent, width,height,col,placeholder,span,row,sticky,fg_color="#FFF",padx=0,pady=0):
+        super().__init__(master=parent,
+                         width=width, 
+                         height=height,
+                         corner_radius=15,
+                         border_width=0,                           
+                         fg_color=fg_color, 
+                         border_color=None,
+                         )
+        self.rowconfigure(0,weight=1)
+        self.columnconfigure((0,1),weight=1)
+        self.entry = EntryField(parent=self,width=150,placeholder_text=placeholder,size=15,col=0,span=1,row=0,sticky='ew',)
+        
+        self.grid(column=col,columnspan=span,row=row,sticky=sticky,padx=padx,pady=pady)
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 class OptionMenu(ctk.CTkOptionMenu):
