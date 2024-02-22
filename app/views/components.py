@@ -1,3 +1,4 @@
+from tkinter.constants import NORMAL
 from typing import Tuple
 import customtkinter as ctk
 from components import *
@@ -32,9 +33,8 @@ class Text(ctk.CTkLabel):
         self.grid(column=col,columnspan=span,row=row,sticky=sticky,padx=padx,pady=pady)
 
 
-
 class EntryField(ctk.CTkEntry):
-    def __init__(self, parent, width,placeholder_text,size,col,span,row,sticky,fg_color='#ECEDF2',border_width=0,corner_radius=STYLING['button-corner-radius'],height=30,border_color='#fff'):
+    def __init__(self, parent, width,placeholder_text,size:int,col:int,row:int,sticky:str,span:int=1,fg_color='#ECEDF2',border_width=0,corner_radius=STYLING['button-corner-radius'],height=30,border_color='#fff',padx=0,pady=0):
         super().__init__(
             master=parent,
             width=width,
@@ -48,18 +48,17 @@ class EntryField(ctk.CTkEntry):
             font=(FONT,size),
             border_color=border_color
            )
-        self.grid(column=col,columnspan=span,row=row,sticky=sticky)
-
+        self.grid(column=col,columnspan=span,row=row,sticky=sticky,padx=padx,pady=pady)
 
 
 class IconButton(ctk.CTkButton):
-    def __init__(self,parent,image, func,text:str,col:int,row:int,sticky:str,padx:int=0,pady:int=0,span=1,color='blue-sky'):
+    def __init__(self,parent,image, func,text:str,col:int,row:int,sticky:str,width=40, height=40,padx:int=0,pady:int=0,span=1,color='blue-sky'):
         super().__init__(
             master=parent,
             command=func,
             text=text,
-            width=70,
-            height=40,
+            width=width,
+            height=height,
             corner_radius=STYLING['button-corner-radius'],
             fg_color=COLORS[color]['fg'],
             hover_color=COLORS[color]['hover'],
@@ -71,45 +70,31 @@ class IconButton(ctk.CTkButton):
 
 
 class EntryFieldFrame(ctk.CTkFrame):
-    def __init__(self,parent, width,height,col,placeholder,span,row,sticky,fg_color="#FFF",padx=0,pady=0):
+    def __init__(self,parent, width,col,placeholder,span,row,sticky,icon,buttonSticky,fg_color="#FFF",padx=0,pady=0,border_color='#fff',border_width=0,height=40):
         super().__init__(master=parent,
                          width=width, 
                          height=height,
                          corner_radius=15,
-                         border_width=0,                           
+                         border_width=border_width,                           
                          fg_color=fg_color, 
-                         border_color=None,
+                         border_color=border_color,
+                         
                          )
-        self.rowconfigure(0,weight=1)
+        self.rowconfigure(0,weight=3)
         self.columnconfigure((0,1),weight=1)
+        self.grid_propagate(False)
+
         
         #entry field
-        self.entry = EntryField(parent=self,width=150,placeholder_text=placeholder,size=15,col=0,span=1,row=0,sticky='ew',fg_color='#fff',border_width=2,border_color="#B6BDCA",corner_radius=12,height=40)
+        self.entry = EntryField(parent=self,width=180,placeholder_text=placeholder,size=15,col=0,span=1,row=0,sticky='ew',fg_color='#fff',border_width=0,border_color="#B6BDCA",corner_radius=12,height=30,padx=(10,0))
         
         #button with icon here
         
-        
+        self.button=IconButton(parent=self,image=icon,text='',func=lambda :print('button clicked'),col=1,row=0,sticky=buttonSticky,color='white',width=10,height=10,padx=(0,10))
          
         self.grid(column=col,columnspan=span,row=row,sticky=sticky,padx=padx,pady=pady)
+ 
         
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 class OptionMenu(ctk.CTkOptionMenu):
     def __init__(self, parent,width,height,button_hover_color ,values, col, span,row,sticky):
         super().__init__(master=parent,width=width,height=height,corner_radius=5,
@@ -121,6 +106,7 @@ class OptionMenu(ctk.CTkOptionMenu):
                          values=values,dynamic_resizing=True)
         self.grid(column=col,columnspan=span,row=row,sticky=sticky)       
 
+
 class OptionMenuHeader(ctk.CTkOptionMenu):
     def __init__(self, parent,width,height,button_hover_color ,values, col, span,row,sticky):
         super().__init__(master=parent,width=width,height=height,corner_radius=5,
@@ -131,8 +117,8 @@ class OptionMenuHeader(ctk.CTkOptionMenu):
                          font=('poppins',15,'normal'),dropdown_font=(FONT,13), 
                          values=values,dynamic_resizing=True)
         self.grid(column=col,columnspan=span,row=row,sticky=sticky) 
-    
-    
+   
+       
 class Frame(ctk.CTkFrame):
     def __init__(self,parent, width,height,col,span,row,sticky,fg_color="#FFF",padx=0,pady=0):
         super().__init__(master=parent,
@@ -148,7 +134,7 @@ class Frame(ctk.CTkFrame):
 
 
 class HeaderFrame(ctk.CTkFrame):
-    def __init__(self,parent, width,height,col,span,row,sticky,fg_color="#FFF"):
+    def __init__(self,parent, width,height,col,span,row,sticky,fg_color="#FFF" ,padx=0,pady=0):
         super().__init__(master=parent,width=width,height=height,                        
                          border_width=0,                           
                          fg_color=fg_color, 
@@ -156,10 +142,39 @@ class HeaderFrame(ctk.CTkFrame):
                          corner_radius=0
                          )
         
-        self.grid(column=col,columnspan=span,row=row,sticky=sticky)
+        self.grid(column=col,columnspan=span,row=row,sticky=sticky,padx=padx,pady=pady)
                 
-    
+                 
 class ImageLabel(ctk.CTkLabel):
     def __init__(self, parent , width:int, height:int, corner_radius:int ,text, image:str, col:int,row:int,sticky:str ,span :int=1, compound: str = "center"):
         super().__init__(master=parent, width=width, height=height, text=text,corner_radius=corner_radius,image=image, compound=compound)
         self.grid(column=col,columnspan=span,row=row,sticky=sticky)
+
+
+class RadioButton(ctk.CTkRadioButton):
+    def __init__(self, 
+                 master: Image.Any, width: int = 100,
+                 height: int = 22, radiobutton_width: int = 22, 
+                 radiobutton_height: int = 22, corner_radius: int | None = None, 
+                 border_width_unchecked: int | None = None, 
+                 border_width_checked: int | None = None, bg_color: str | Tuple[str, str] = "transparent", 
+                 fg_color: str | Tuple[str, str] | None = None, hover_color: str | Tuple[str, str] | None = None, 
+                 border_color: str | Tuple[str, str] | None = None, text_color: str | Tuple[str, str] | None = None,
+                 text_color_disabled: str | Tuple[str, str] | None = None, 
+                 text: str = "CTkRadioButton",
+                 font: tuple | CTkFont | None = None,
+                 textvariable: Variable | None = None, 
+                 variable: Variable | None = None, 
+                 value: int | str = 0, 
+                 state: str = tkinter.NORMAL, hover: bool = True,
+                 command: Callable[..., Any] | Any = None,
+                 col=0,
+                 span=1,
+                 row=0,
+                 sticky="w",
+                 padx=0,
+                 pady=0
+                  ):
+        super().__init__(master, width, height, radiobutton_width, radiobutton_height, corner_radius, border_width_unchecked, border_width_checked, bg_color, fg_color, hover_color, border_color, text_color, text_color_disabled, text, font, textvariable, variable, value, state, hover, command,)
+        
+        self.grid(column=col,columnspan=span,row=row,sticky=sticky,padx=padx,pady=pady)
