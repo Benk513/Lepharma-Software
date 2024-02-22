@@ -37,8 +37,8 @@ class Dashboard(ctk.CTk):
         
         self.columnconfigure((0,1),weight=1)
      
-        self.rowconfigure((0,1,3),weight=1)
-        self.rowconfigure(2,weight=6)
+        self.rowconfigure((0,1,3),weight=1,uniform='a')
+        self.rowconfigure(2,weight=6,uniform='a')
         
         self.create_widgets()
     
@@ -72,30 +72,47 @@ class Dashboard(ctk.CTk):
         OptionMenuHeader(self.headFrame,40,30,COLORS['primary']['hover'],values=["Produits", "Vendeur(se)"],col=6,span=1,row=0,sticky='e')
         OptionMenuHeader(self.headFrame,40,30,COLORS['primary']['hover'],values=["Stocks", "Vendeur(se)"],col=7,span=1,row=0,sticky='e')
         OptionMenuHeader(self.headFrame,40,30,COLORS['primary']['hover'],values=["Rapports", "Vendeur(se)"],col=8,span=1,row=0,sticky='e')
-        OptionMenuHeader(self.headFrame,40,30,COLORS['primary']['hover'],values=["Clients", "Vendeur(se)"],col=9,span=1,row=0,sticky='e')
+        OptionMenuHeader(self.headFrame,40,30,COLORS['primary']['hover'],values=["Clients","Ajouter","Debiteurs"],col=9,span=1,row=0,sticky='e')
            
         self.logoImg = ctk.CTkImage(light_image=Image.open(IMAGE_LINKS['userProfile']) ,size=(40,40))
         self.logoFrame=ImageLabel(parent=self.headFrame,width=50,height=50,image=self.logoImg ,text='' ,corner_radius=0,col=10,row=0,sticky='e')
         OptionMenuHeader(self.headFrame,40,30,COLORS['primary']['hover'],values=["","Utilisateurs","Notification","Parametre","Deconnexion"],col=11,span=1,row=0,sticky='w')
         
     def create_title_bar(self,display_width):
-        self.frame = HeaderFrame(self,width=display_width,height=70,col=0,span=2,row=1,sticky='nsew',fg_color=COLORS['light']['fg'])
+        self.frame = HeaderFrame(self,width=display_width,height=70,col=0,span=2,row=1,sticky='nsew',fg_color=COLORS['white']['fg'])
         
         #configure the column and rows
-        self.frame.columnconfigure((0,1,2,3,4),weight=1)
+        self.frame.columnconfigure(0,weight=4)
+        self.frame.columnconfigure((1,2),weight=2)
+        self.frame.columnconfigure((3,4),weight=1)
         self.frame.rowconfigure(0,weight=1)
         
         #main title helps to know where we are     
-        self.title = Text(self.frame,text="Clients  > Liste Des Clients",col=0,row=0,size=TITLE_FONT_SIZE,weight='bold',span=1,sticky='ws',color='title',padx=(50,0))
+        self.navigationTitle("Ventes","Statistiques")
+        #self.addbuttonswidgets()
         
-      
-        self.addClient=Button(self.frame,text='Ajouter un client',color='blue-sky',col=4,row=0,span=1,func=lambda :print("hello"),sticky='es')
+    def navigationTitle(self,main,sub):
+        # main ="Clients"
+        # sub="Liste des clients"
+        text = main+"  >  "+sub
+        self.title = Text(self.frame,text=text,col=0,row=0,size=TITLE_FONT_SIZE,weight='bold',span=3,sticky='ws',color='title',padx=(50,0))    
+    def addbuttonswidgets(self): 
+        self.addClient=Button(self.frame,text='Ajouter un client',color='blue-sky',col=4,row=0,span=1,func=lambda :print("hello"),sticky='es',padx=(10,100),pady=(20,0))
+        self.exportClientsXls=Button(self.frame,text='Exporter en .xlsx ',color='gray',col=3,row=0,span=1,func=lambda :print("hello"),sticky='es',padx=10,pady=(20,0))
+        
+         #importing the close icon image 
+        self.searchIcon = ctk.CTkImage(light_image=Image.open(IMAGE_LINKS['searchIcon']) ,size=(25,25))
+        self.rechercherClient = EntryFieldFrame(self.frame,width=150,height=40,col=2,placeholder="Nom du client",span=1,row=0,sticky='swe',padx=20,buttonSticky='e',icon=self.searchIcon,border_width=2,border_color='#B6BDCA',pady=(20,0))
         
     
     def create_main_frame(self,display_width):
-        self.headFrame = HeaderFrame(self,width=display_width,height=10,col=0,span=2,row=2,fg_color=COLORS['light']['fg'],sticky='ew')
-        self.create_filter_frame()
-        #self.create_list_frame()
+        self.headFrame = HeaderFrame(self,width=display_width,height=10,col=0,span=2,row=2,fg_color=COLORS['light']['fg'],sticky='ew',pady=(20,0))
+        
+        
+        # self.create_filter_frame()
+        # self.create_list_frame()
+        # self.create_filter_frame()
+        self.create_add_client_frame()
         
     def create_filter_frame(self):
         #filter frame
@@ -105,19 +122,39 @@ class Dashboard(ctk.CTk):
         self.filterFrame.rowconfigure((0,1,2,3,4,5,6),weight=1)      
         
         self.filterTitle = Text(self.filterFrame,"Filtrer Par",0,1,0,15,'bold','ew')
-        self.val = EntryFieldFrame(self.filterFrame,width=200,height=40,col=0,placeholder="Nom du client",span=1,row=1,sticky='we',padx=20)
-    
-    
-    
-    
-    
+        
+        
+        #importing the close icon image 
+        self.searchIcon = ctk.CTkImage(light_image=Image.open(IMAGE_LINKS['searchIcon']) ,size=(25,25))
+        self.val = EntryFieldFrame(self.filterFrame,width=100,height=50,col=0,placeholder="Nom du client",span=1,row=1,sticky='we',padx=20,buttonSticky='e',icon=self.searchIcon,border_width=2,border_color='#B6BDCA')
+        
+        #importing the close icon image 
+        self.searchIcon = ctk.CTkImage(light_image=Image.open(IMAGE_LINKS['searchIcon']) ,size=(25,25))
+        self.val = EntryFieldFrame(self.filterFrame,width=100,height=50,col=0,placeholder="Nom du client",span=1,row=2,sticky='we',padx=20,buttonSticky='e',icon=self.searchIcon,border_width=2,border_color='#B6BDCA')
+        
+        #importing the close icon image 
+        self.searchIcon = ctk.CTkImage(light_image=Image.open(IMAGE_LINKS['searchIcon']) ,size=(25,25))
+        self.val = EntryFieldFrame(self.filterFrame,width=100,height=50,col=0,placeholder="Nom du client",span=1,row=3,sticky='we',padx=20,buttonSticky='e',icon=self.searchIcon,border_width=2,border_color='#B6BDCA')
+        
+        #importing the close icon image 
+        self.searchIcon = ctk.CTkImage(light_image=Image.open(IMAGE_LINKS['searchIcon']) ,size=(25,25))
+        self.val = EntryFieldFrame(self.filterFrame,width=100,height=50,col=0,placeholder="Nom du client",span=1,row=4,sticky='we',padx=20,buttonSticky='e',icon=self.searchIcon,border_width=2,border_color='#B6BDCA')
+        
+        #importing the close icon image 
+        self.searchIcon = ctk.CTkImage(light_image=Image.open(IMAGE_LINKS['searchIcon']) ,size=(25,25))
+        self.val = EntryFieldFrame(self.filterFrame,width=100,height=50,col=0,placeholder="Nom du client",span=1,row=5,sticky='we',padx=20,buttonSticky='e',icon=self.searchIcon,border_width=2,border_color='#B6BDCA')  
         
     def create_list_frame(self):   
         #list frame
         self.frame = Frame(self.headFrame,width=1000,height=590,col=1,span=1,row=1,sticky='es',padx=(40,0))
+        
+        
+    def create_add_client_frame(self):   
+        #list frame
+        self.frame = Frame(self.headFrame,width=1350,height=590,col=1,span=2,row=1,sticky='ew',padx=(40,40))
      
     def create_footer_bar(self,display_width):
-        self.headFrame = HeaderFrame(self,width=display_width,height=50,col=0,span=2,row=3,fg_color=COLORS['orange']['fg'],sticky='sew')
+        self.headFrame = HeaderFrame(self,width=display_width,height=50,col=0,span=2,row=3,fg_color=COLORS['white']['fg'],sticky='sew')
         
 if __name__ == "__main__":
     Dashboard().mainloop()
