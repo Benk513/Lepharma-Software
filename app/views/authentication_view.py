@@ -83,11 +83,11 @@ class AuthenticationView(ctk.CTk):
         
         #username label and entry
         self.usernameLabel = Text(self.frameForm,text="Nom d'utilisateur",col=0,span=1,row=3,size=13,weight='normal',sticky='ws',color='text')
-        self.usernameEntry=EntryField(self.frameForm,150,'Inserez votre nom d\'utilisateur ',12,0,1,4,'new')
+        self.usernameEntry=EntryField(self.frameForm ,width=150,placeholder_text='Inserez votre nom d\'utilisateur',size=12,col=0,span=1,row=4,sticky='we')
               
         #username label and entry
         self.passwordLabel = Text(self.frameForm,text="Mot de Passe",col=0,span=1,row=5,size=13,weight='normal',sticky='ws',color='text')
-        self.passwordEntry=EntryField(self.frameForm,150,'Inserez votre mot de passe ',12,0,1,6,'new')
+        self.passwordEntry=EntryField(self.frameForm,width=150,placeholder_text='Inserez votre mot de passe ',size=12,col=0,span=1,row=6,sticky='we',show="*")
        
         #button for login
         self.loginButton = ctk.CTkButton(
