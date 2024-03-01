@@ -6,137 +6,97 @@ from components import *
 from ui_settings import *
 from PIL import Image
 
-def create_add_product_frame(self):   
+class ProductView:
+    def __init__(self) -> None:
+        self.open
+        
+        
+        
+    def open(self):
+        print(self)     
+            
+               
+        
+    def create_add_product_frame(self,headFrame):   
         #list frame
-        self.frame = Frame(self.headFrame,width=1400,height=590,col=1,span=2,row=1,sticky='ew',padx=(40,40))
+        self.frame = Frame(headFrame,width=1400,height=590,col=1,span=2,row=1,sticky='ew',padx=(40,40))
         self.frame.columnconfigure((0,1),weight=1,uniform='a')
         self.frame.columnconfigure((2,3),weight=1)
         self.frame.rowconfigure((0,1,2,3,4,5,6,7,8),weight=1,uniform='a')
         self.frame.rowconfigure((7,8),weight=2)
         self.frame.grid_propagate(False)
-        
-        # #importing the close icon image 
-        # self.searchIcon = ctk.CTkImage(light_image=Image.open(IMAGE_LINKS['searchIcon']) ,size=(25,25))
-        # self.val = EntryFieldFrame(self.frame,width=100,height=50,col=0,placeholder="Nom du client",span=1,row=1,sticky='we',padx=20,buttonSticky='e',icon=self.searchIcon,border_width=2,border_color=COLORS['entryFieldColor'])
-        
-        #codebar
+            
+            # #importing the close icon image 
+            # self.searchIcon = ctk.CTkImage(light_image=Image.open(IMAGE_LINKS['searchIcon']) ,size=(25,25))
+            # self.val = EntryFieldFrame(self.frame,width=100,height=50,col=0,placeholder="Nom du client",span=1,row=1,sticky='we',padx=20,buttonSticky='e',icon=self.searchIcon,border_width=2,border_color=COLORS['entryFieldColor'])
+            
+            #codebar
         self.codebarProduitLabel = Text(self.frame,text="Code Produit",col=0,span=1,row=1,size=15,weight='normal',sticky='ws',color='text',padx=(50,0))
         self.codebarProduitEntry=EntryField(self.frame,placeholder_text="inserer le code a bar",height=50,size=13,width=150,col=0,row=2,sticky="new",padx=50,border_width=2,border_color=COLORS['entryFieldColor'],fg_color='#fff')
-        
-        #designation
+            
+            #designation
         self.designationL = Text(self.frame,text="Designation",col=0,span=1,row=3,size=15,weight='normal',sticky='ws',color='text',padx=50)
         self.designationE=EntryField(self.frame,placeholder_text="Inserez le nom du produit" ,height=50,size=13,width=150,col=0,row=4,sticky="new",padx=50,border_width=2,border_color=COLORS['entryFieldColor'],fg_color='#fff')
-        
+            
 
         #forme
         self.formeL = Text(self.frame,text="Forme",col=0,span=1,row=5,size=15,weight='normal',sticky='ws',color='text',padx=50)
         self.formeE=EntryField(self.frame,placeholder_text="inj ,sp,cès" ,height=50,size=13,width=150,col=0,row=6,sticky="new",padx=50,border_width=2,border_color=COLORS['entryFieldColor'],fg_color='#fff')
-        
-        #date d'expiration 
-        self.formeL = Text(self.frame,text="Date d'Expiration",col=0,span=1,row=5,size=15,weight='normal',sticky='ws',color='text',padx=50)
-        self.formeE=EntryField(self.frame,placeholder_text="Jour/Mois/Annee" ,height=50,size=13,width=150,col=0,row=6,sticky="new",padx=50,border_width=2,border_color=COLORS['entryFieldColor'],fg_color='#fff')
+            
+       
 
-        
-        #prixAchat
+            
+            #prixAchat
         self.prixAchatL = Text(self.frame,text="Prix d'Achat",col=1,span=1,row=1,size=15,weight='normal',sticky='ws',color='text',padx=20)
         self.prixAchatE=EntryField(self.frame,placeholder_text="Inserer le prix d'achat'" ,height=50,size=13,width=150,col=1,row=2,sticky="new",padx=(20,50),border_width=2,border_color=COLORS['entryFieldColor'],fg_color='#fff')
-        
-        #prixVente
+            
+            #prixVente
         self.prixVenteL = Text(self.frame,text="Prix de Vente",col=1,span=1,row=3,size=15,weight='normal',sticky='ws',color='text',padx=20)
-        self.prixVenteE=EntryField(self.frame,placeholder_text="Inserez le prix de vente'" ,height=50,size=13,width=150,col=1,row=4,sticky="new",padx=20,border_width=2,border_color=COLORS['entryFieldColor'],fg_color='#fff')
-        
-        
-        #Quantité
+        self.prixVenteE=EntryField(self.frame,placeholder_text="Inserez le prix de vente'" ,height=50,size=13,width=150,col=1,row=4,sticky="new",padx=(20,50),border_width=2,border_color=COLORS['entryFieldColor'],fg_color='#fff')
+            
+            
+            #Quantité
         self.creditClient = ctk.StringVar(value="0")
         self.nomclientLabel = Text(self.frame,text="Quantité",col=1,span=1,row=5,size=15,weight='normal',sticky='ws',color='text',padx=20)
         self.nomclientEntry=EntryField(self.frame,placeholder_text="Inserez la quantité de stock" ,height=50,size=13,width=150,col=1,row=6,sticky="new",padx=20,border_width=2,border_color=COLORS['entryFieldColor'],fg_color='#fff',state=ctk.NORMAL,textvariable=self.creditClient)
-        
-        #en gros ici si le entryfield state est egale a disabled -> changer le style du box 
-        
-        
-        #stock minimal
+            
+            #en gros ici si le entryfield state est egale a disabled -> changer le style du box 
+            
+            
+            #stock minimal
         self.creditClient = ctk.StringVar(value="0")
         self.nomclientLabel = Text(self.frame,text="Stock Minimal",col=2,span=1,row=1,size=15,weight='normal',sticky='ws',color='text',padx=20)
         self.nomclientEntry=EntryField(self.frame,placeholder_text="Inserez la quantité de stock minimale" ,height=50,size=13,width=150,col=2,row=2,sticky="new",padx=20,border_width=2,border_color=COLORS['entryFieldColor'],fg_color='#fff',state=ctk.NORMAL,textvariable=self.creditClient)
-        
+            
 
-    
-        #age du client
+        
+            #age du client
         self.nomclientLabel = Text(self.frame,text="Age du client",col=2,span=1,row=3,size=15,weight='normal',sticky='ws',color='text',padx=20)
-         
+            
         self.value=ctk.StringVar(value="adulte")
         self.rAdulte = RadioButton(parent=self.frame,func=lambda:print(self.value.get()),value="adulte",text="Adulte",col=2,row=4,variable=self.value,sticky="w",padx=(10,0))
         self.rAge = RadioButton(parent=self.frame,func=lambda:print(self.value.get()),value="age",text="Agé",col=2,row=4,variable=self.value,sticky="e",padx=(10,0))
-     
-     
-        #type de client
-        self.nomclientLabel = Text(self.frame,text="Type de client",col=2,span=1,row=5,size=15,weight='normal',sticky='ws',color='text',padx=20)
-         
-        self.value=ctk.StringVar(value="male")
-        
-        self.rAdulte = RadioButton(parent=self.frame,func=lambda:print(self.value.get()),value="fidel",text="Standard",col=2,row=6,variable=self.value,sticky="w",padx=(10,0))
-        self.rAge = RadioButton(parent=self.frame,func=lambda:print(self.value.get()),value="fidele",text="Fidele",col=2,row=6,variable=self.value,sticky="e",padx=(10,0))
-        
-        
+           
         self.ajouterButton = Button(self.frame ,func=lambda:print("button clicked"),col=3,row=8,sticky="wn",padx=(0,0),text="Ajouter")
-        
+            
         self.annulerButton = Button(self.frame ,func=lambda:print("button clicked"),col=3,row=8,sticky="en",padx=(0,20),text="Annuler",color='gray')
+            
+        
+
+
+            #date du client
+        self.nomclientLabel = Text(self.frame,text="Date du client",col=2,span=1,row=3,size=15,weight='normal',sticky='ws',color='text',padx=20)
+            
+        self.value=ctk.StringVar(value="adulte")
+        self.rAdulte = RadioButton(parent=self.frame,func=lambda:print(self.value.get()),value="adulte",text="Adulte",col=2,row=4,variable=self.value,sticky="w",padx=(10,0))
+        self.rAge = RadioButton(parent=self.frame,func=lambda:print(self.value.get()),value="age",text="Agé",col=2,row=4,variable=self.value,sticky="e",padx=(10,0))
         
         
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            #date d'expiration 
+        self.formeL = Text(self.frame,text="Date d'Expiration",col=2,span=1,row=5,size=15,weight='normal',sticky='ws',color='text',padx=20)
+        self.formeE=EntryField(self.frame,placeholder_text="Jour/Mois/Annee" ,height=50,size=13,width=150,col=2,row=6,sticky="new",padx=20,border_width=2,border_color=COLORS['entryFieldColor'],fg_color='#fff')
+         
+ 
 
 
 

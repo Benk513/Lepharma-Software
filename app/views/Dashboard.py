@@ -5,6 +5,7 @@ import customtkinter as ctk
 from components import *
 from ui_settings import *
 from PIL import Image
+from product_view import *
 # import os
 # cwd = os.getcwd()  # Get the current working directory (cwd)
 # files = os.listdir(cwd)  # Get all the files in that directory
@@ -27,9 +28,7 @@ class Dashboard(ctk.CTk):
         
         self.minsize(minimalWidth,minimalHeight)
         self.geometry(f'{minimalWidth}x{minimalHeight}+0+0')
-        
-         
-              
+                      
         #security event
         self.bind('<Escape>', lambda event:self.quit())
     
@@ -47,8 +46,7 @@ class Dashboard(ctk.CTk):
         
         display_width= self.winfo_screenwidth()
         display_height =self.winfo_screenheight()
-        
-        
+                
         self.create_navbar(display_width,display_height)
         self.create_title_bar(display_width)
         self.create_main_frame(display_width)
@@ -68,9 +66,9 @@ class Dashboard(ctk.CTk):
         
         #Option Menu for the header               
         OptionMenuHeader(self.headFrame,40,30,COLORS['primary']['hover'],values=["Tableau de Bord", "Vendeur(se)"],col=4,span=1,row=0,sticky='e')
-        OptionMenuHeader(self.headFrame,40,30,COLORS['primary']['hover'],values=["Ventes", "Vendeur(se)"],col=5,span=1,row=0,sticky='e')
-        OptionMenuHeader(self.headFrame,40,30,COLORS['primary']['hover'],values=["Produits", "Vendeur(se)"],col=6,span=1,row=0,sticky='e')
-        OptionMenuHeader(self.headFrame,40,30,COLORS['primary']['hover'],values=["Stocks", "Vendeur(se)"],col=7,span=1,row=0,sticky='e')
+        OptionMenuHeader(self.headFrame,40,30,COLORS['primary']['hover'],values=["Ventes","Point de Vente","Factures", "Historique de Vente"],col=5,span=1,row=0,sticky='e')
+        OptionMenuHeader(self.headFrame,40,30,COLORS['primary']['hover'],values=["Produits", "Ajouter un Produit","Produits Perimés"],col=6,span=1,row=0,sticky='e')
+        OptionMenuHeader(self.headFrame,40,30,COLORS['primary']['hover'],values=["Stocks","Ajouter un Stock" ,"Inventaire"],col=7,span=1,row=0,sticky='e')
         OptionMenuHeader(self.headFrame,40,30,COLORS['primary']['hover'],values=["Rapports", "Vendeur(se)"],col=8,span=1,row=0,sticky='e')
         OptionMenuHeader(self.headFrame,40,30,COLORS['primary']['hover'],values=["Clients","Ajouter","Debiteurs"],col=9,span=1,row=0,sticky='e')
            
@@ -102,57 +100,19 @@ class Dashboard(ctk.CTk):
         
          #importing the close icon image 
         self.searchIcon = ctk.CTkImage(light_image=Image.open(IMAGE_LINKS['searchIcon']) ,size=(25,25))
-        self.rechercherClient = EntryFieldFrame(self.frame,width=150,height=40,col=2,placeholder="Nom du client",span=1,row=0,sticky='swe',padx=20,buttonSticky='e',icon=self.searchIcon,border_width=2,border_color='#B6BDCA',pady=(20,0))
+        self.rechercherClient = EntryFieldFrame(self.frame,width=150,height=40,col=2,placeholder="Nom du client",span=1,row=0,sticky='swe',padx=20,buttonSticky='e',icon=self.searchIcon,border_width=2,border_color=COLORS['entryFieldColor'],pady=(20,0))
         
     
     def create_main_frame(self,display_width):
         self.headFrame = HeaderFrame(self,width=display_width,height=10,col=0,span=2,row=2,fg_color=COLORS['light']['fg'],sticky='ew',pady=(20,0))
-        
-        
-        # self.create_filter_frame()
         # self.create_list_frame()
         # self.create_filter_frame()
-        self.create_add_client_frame()
-        
-    def create_filter_frame(self):
-        #filter frame
-        self.filterFrame = Frame(self.headFrame,width=350,height=590,col=0,span=1,row=1,sticky='w',padx=(50,0))
-        self.filterFrame.grid_propagate(False)
-        self.filterFrame.columnconfigure(0,weight=1)
-        self.filterFrame.rowconfigure((0,1,2,3,4,5,6),weight=1)      
-        
-        self.filterTitle = Text(self.filterFrame,"Filtrer Par",0,1,0,15,'bold','ew')
-        
-        
-        #importing the close icon image 
-        self.searchIcon = ctk.CTkImage(light_image=Image.open(IMAGE_LINKS['searchIcon']) ,size=(25,25))
-        self.val = EntryFieldFrame(self.filterFrame,width=100,height=50,col=0,placeholder="Nom du client",span=1,row=1,sticky='we',padx=20,buttonSticky='e',icon=self.searchIcon,border_width=2,border_color='#B6BDCA')
-        
-        #importing the close icon image 
-        self.searchIcon = ctk.CTkImage(light_image=Image.open(IMAGE_LINKS['searchIcon']) ,size=(25,25))
-        self.val = EntryFieldFrame(self.filterFrame,width=100,height=50,col=0,placeholder="Nom du client",span=1,row=2,sticky='we',padx=20,buttonSticky='e',icon=self.searchIcon,border_width=2,border_color='#B6BDCA')
-        
-        #importing the close icon image 
-        self.searchIcon = ctk.CTkImage(light_image=Image.open(IMAGE_LINKS['searchIcon']) ,size=(25,25))
-        self.val = EntryFieldFrame(self.filterFrame,width=100,height=50,col=0,placeholder="Nom du client",span=1,row=3,sticky='we',padx=20,buttonSticky='e',icon=self.searchIcon,border_width=2,border_color='#B6BDCA')
-        
-        #importing the close icon image 
-        self.searchIcon = ctk.CTkImage(light_image=Image.open(IMAGE_LINKS['searchIcon']) ,size=(25,25))
-        self.val = EntryFieldFrame(self.filterFrame,width=100,height=50,col=0,placeholder="Nom du client",span=1,row=4,sticky='we',padx=20,buttonSticky='e',icon=self.searchIcon,border_width=2,border_color='#B6BDCA')
-        
-        #importing the close icon image 
-        self.searchIcon = ctk.CTkImage(light_image=Image.open(IMAGE_LINKS['searchIcon']) ,size=(25,25))
-        self.val = EntryFieldFrame(self.filterFrame,width=100,height=50,col=0,placeholder="Nom du client",span=1,row=5,sticky='we',padx=20,buttonSticky='e',icon=self.searchIcon,border_width=2,border_color='#B6BDCA')  
-        
-    def create_list_frame(self):   
-        #list frame
-        self.frame = Frame(self.headFrame,width=1000,height=590,col=1,span=1,row=1,sticky='es',padx=(40,0))
-        
-        
-    def create_add_client_frame(self):   
-        #list frame
-        self.frame = Frame(self.headFrame,width=1350,height=590,col=1,span=2,row=1,sticky='ew',padx=(40,40))
-     
+        #self.create_add_client_frame()
+        #self.create_list_clients()
+        self.productview=ProductView().create_add_product_frame(self.headFrame)    
+    
+
+
     def create_footer_bar(self,display_width):
         self.headFrame = HeaderFrame(self,width=display_width,height=50,col=0,span=2,row=3,fg_color=COLORS['white']['fg'],sticky='sew')
         
